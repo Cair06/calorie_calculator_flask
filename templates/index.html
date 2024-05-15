@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('/static/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+        }
+        input, select, textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+            padding: 15px;
+            margin-top: 20px;
+            width: 100%;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .gender-select {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .gender-select label {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            margin-right: 10px;
+        }
+        .gender-select label:last-child {
+            margin-right: 0;
+        }
+        .gender-select input[type="radio"] {
+            display: none;
+        }
+        .gender-select input[type="radio"]:checked + label {
+            border-color: #ccc;
+        }
+        .male:checked + label {
+            background-color: #E3F2FD;
+        }
+        .female:checked + label {
+            background-color: #FCE4EC;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calorie Needs Calculator</h1>
+        <form method="post">
+            <label for="weight">Weight (kg):</label>
+            <input type="text" id="weight" name="weight" value="{{ weight if weight is not none else '' }}" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="text" id="height" name="height" value="{{ height if height is not none else '' }}" required>
+
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" value="{{ age if age is not none else '' }}" required>
+
+            <div class="gender-select">
+                <input type="radio" id="male" name="gender" value="male" class="male" {% if gender == 'male' %}checked{% endif %}>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" class="female" {% if gender == 'female' %}checked{% endif %}>
+                <label for="female">Female</label>
+            </div>
+
+            <label for="activity_level">Activity Level:</label>
+            <select id="activity_level" name="activity_level">
+                <option value="1.2" {% if activity_level == '1.2' %}selected{% endif %}>Sedentary</option>
+                <option value="1.375" {% if activity_level == '1.375' %}selected{% endif %}>Lightly active</option>
+                <option value="1.55" {% if activity_level == '1.55' %}selected{% endif %}>Moderately active</option>
+                <option value="1.725" {% if activity_level == '1.725' %}selected{% endif %}>Very active</option>
+                <option value="1.9" {% if activity_level == '1.9' %}selected{% endif %}>Extra active</option>
+            </select>
+
+            <label for="goal">Goal:</label>
+            <select id="goal" name="goal">
+                <option value="lose" {% if goal == 'lose' %}selected{% endif %}>Lose Weight</option>
+                <option value="gain" {% if goal == 'gain' %}selected{% endif %}>Gain Weight</option>
+                <option value="maintain" {% if goal == 'maintain' %}selected{% endif %}>Maintain Weight</option>
+            </select>
+
+            <button type="submit">Calculate</button>
+        </form>
+        {% if result %}
+            <div class="result">{{ result }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

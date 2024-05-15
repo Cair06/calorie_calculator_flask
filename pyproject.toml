@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "calorie-calculator"
+version = "0.1.0"
+description = ""
+authors = ["Chanov Sergey <s.c.chanov@mail.ru>"]
+readme = "README.md"
+packages = [{include = "calorie_calculator"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
