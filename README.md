@@ -10,7 +10,7 @@ A lightweight web application for calculating daily calorie needs based on weigh
 
 ## Screenshot
 
-![Calorie Calculator Screenshot](static/mini_background) <!-- Replace this URL with the actual URL of your image -->
+![Calorie Calculator Screenshot](static/mini_background.jpg) <!-- Replace this URL with the actual URL of your image -->
 
 ## Installation
 
